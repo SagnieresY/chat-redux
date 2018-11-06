@@ -2,19 +2,37 @@ import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { setCity } from "../actions";
 
-
-class Message extends Component {
-
-  render() {
-    return (
-          <div >
-            {this.props.content}
-          </div>
-      );
+function strToRGB(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i += 1) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
+  const c = (hash & 0x00FFFFFF)
+  .toString(16)
+  .toUpperCase();
+  return `#${"00000".substring(0, 6 - c.length)}${c}`;
+}
+
+
+const Message = (props) => {
+  const time = new Date(props.created_at).toLocaleTimeString();
+
+  return (
+    <div className="message-container">
+      <i className="author">
+        <span style={{ color: strToRGB(props.author) }}>{props.author}</span>
+        <small>{time}</small>
+      </i>
+      <p>{props.content}</p>
+    </div>
+    );
 };
 
 
+
 export default Message;
+
+
+
+

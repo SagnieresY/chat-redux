@@ -4,10 +4,14 @@ import MessageList from '../containers/message_list';
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="messaging-wrapper">
+      <div className="logo-container">
+        <img className="messaging-logo" src="assets/images/logo.ico" alt="logo" />
+      </div>
       <MessageList />
     </div>
   );
 };
 
 export default App;
+
